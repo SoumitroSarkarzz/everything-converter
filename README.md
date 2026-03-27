@@ -1,108 +1,65 @@
 # Everything Converter
 
-A comprehensive, pixel-perfect converter tool with a retro-futuristic UI. Convert lengths, weights, temperatures, currencies, and much more—all in one place!
+A comprehensive converter tool with a pixel-art UI. Convert lengths, weights, temperatures, currencies, and more.
 
-![Everything Converter](https://via.placeholder.com/800x400/090a0f/00f0ff?text=Everything+Converter+Screenshot)
+## Features
 
-## 🌟 Features
+### Core Conversions
+- Basic Math: Length, Weight, Temperature, Volume, Area, Speed, Time, Data Storage
+- Digital Tools: Password Generator, QR Code Generator, Hash Generator, Text Case Converter, URL Shortener
+- Advanced: Scientific Calculator, Color Converter (HEX/RGB/HSL), Base64 Encoder/Decoder, URL Encoder/Decoder, Regex Tester
+- Currency: Live currency conversion with offline caching
+- Student Tools: Percentage Calculator, Fraction Converter, CGPA to Percentage, Age Calculator, Tip Calculator
+- Health: BMI Calculator, Heart Rate Zones, Daily Calorie Needs
+- Extra: Multi-Convert Mode, Time Zone Converter, Date Difference Calculator, Video Resolution Helper
 
-### 🔧 Core Conversions
-- **Basic Math**: Length, Weight, Temperature, Volume, Area, Speed, Time, Data Storage
-- **Digital Tools**: Password Generator, QR Code Generator, Hash Generator, Text Case Converter, URL Shortener
-- **Advanced**: Scientific Calculator, Color Converter (HEX/RGB/HSL), Base64 Encoder/Decoder, URL Encoder/Decoder, Regex Tester
-- **Currency**: Live currency conversion with offline caching
-- **Student Tools**: Percentage Calculator, Fraction Converter, CGPA to Percentage, Age Calculator, Tip Calculator
-- **Health**: BMI Calculator, Heart Rate Zones, Daily Calorie Needs
-- **Extra**: Multi-Convert Mode, Time Zone Converter, Date Difference Calculator, Video Resolution Helper
+### User Experience
+- Fully responsive design for desktop, tablet, and mobile
+- Progressive Web App (PWA) support
+- Voice search (requires HTTPS)
+- Intelligent search with fuzzy matching
+- Favorites system
+- History tracking
+- Multiple themes
+- Offline support
 
-### 🎨 User Experience
-- **Fully Responsive**: Optimized for desktop, tablet, and mobile
-- **Progressive Web App (PWA)**: Install as an app on mobile devices
-- **Voice Search**: Search tools using voice commands (requires HTTPS)
-- **Intelligent Search**: Fuzzy matching for quick tool discovery
-- **Favorites System**: Save favorite tools for easy access
-- **History Tracking**: All conversions saved locally with timestamps
-- **Multiple Themes**: 5 beautiful themes (Cyber Neon, Red & White, Monochrome, Blue, Green)
-- **Offline Support**: Works offline with cached data
+## Installation
 
-### ⚡ Performance
-- **No Backend Required**: 100% client-side processing
-- **Fast Loading**: Minimal dependencies, optimized code
-- **Data Privacy**: All data stays on your device (localStorage only)
-- **Service Worker**: Caching for offline functionality
-
-## 🚀 Quick Start
-
-### Local Development
 1. Clone the repository:
-   ```bash
+   ```
    git clone https://github.com/SoumitroSarkarzz/everything-converter.git
    cd everything-converter
    ```
 
-2. Start a local server:
-   ```bash
-   python3 -m http.server 8000
-   ```
+2. Open `index.html` in a web browser or serve with a local server.
 
-3. Open `http://localhost:8000` in your browser.
+## Deployment
 
-### Deployment
+Deploy to static hosting services like Netlify, Vercel, or GitHub Pages by uploading the files:
+- index.html
+- style.css
+- script.js
+- sw.js
+- manifest.json
 
-#### Netlify (Recommended)
-1. Connect your GitHub repository to Netlify.
-2. Deploy automatically—Netlify handles the build process.
-3. Your site will be live at `https://your-site-name.netlify.app`.
+## Technologies Used
 
-#### Other Platforms
-- **Vercel**: Connect repo and deploy.
-- **GitHub Pages**: Enable Pages in repository settings.
-- **Manual**: Upload files to any static hosting service.
+- HTML5
+- CSS3
+- JavaScript (ES6+)
+- Service Worker for PWA
 
-## 🛠️ Technologies Used
+## Usage
 
-- **HTML5**: Semantic markup and structure
-- **CSS3**: Custom properties, animations, responsive design
-- **JavaScript (ES6+)**: Vanilla JS, no frameworks
-- **PWA**: Service Worker, Web App Manifest
-- **APIs**: Web Speech API, Clipboard API, localStorage
+- Use the search bar to find tools.
+- Enter values and select units for conversions.
+- Favorite tools by clicking the star icon.
+- View history in the History tab.
+- Switch themes in the sidebar.
 
-## 📱 Usage
+## License
 
-1. **Search**: Use the search bar or voice search to find tools.
-2. **Convert**: Enter values and select units for instant conversions.
-3. **Favorites**: Click the star icon to favorite tools.
-4. **History**: View past conversions in the History tab.
-5. **Themes**: Switch themes in the sidebar.
-6. **Install**: On mobile, add to home screen for app-like experience.
-
-## 🤝 Contributing
-
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feature-name`.
-3. Commit changes: `git commit -m 'Add feature'`.
-4. Push to branch: `git push origin feature-name`.
-5. Open a Pull Request.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👨‍💻 Author
-
-**Soumitro Sarkar**  
-- GitHub: [@SoumitroSarkarzz](https://github.com/SoumitroSarkarzz)
-- Email: [your-email@example.com](mailto:your-email@example.com)
-
-## 🙏 Acknowledgments
-
-- Icons from Heroicons
-- Color schemes inspired by cyberpunk aesthetics
-- Built with love for developers and users alike
-
----
-
-⭐ If you find this project useful, please give it a star on GitHub!
+MIT License
 ```
 
 **Netlify Deployment:**
