@@ -1,0 +1,75 @@
+{
+  "name": "Everything Converter - Pixel Perfect Conversions",
+  "short_name": "Everything Converter",
+  "description": "Convert anything! Basic math, digital data, currency, health metrics, and more - pixel perfect conversions with a retro-futuristic UI.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#090a0f",
+  "theme_color": "#00f0ff",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en-US",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' fill='%23090a0f'/><text x='96' y='120' font-size='80' font-weight='bold' text-anchor='middle' fill='%2300f0ff' font-family='monospace'>EC</text></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' fill='%23090a0f'/><text x='256' y='340' font-size='200' font-weight='bold' text-anchor='middle' fill='%2300f0ff' font-family='monospace'>EC</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "utilities"],
+  "screenshots": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 540 720'><rect width='540' height='720' fill='%23090a0f'/><text x='270' y='360' font-size='60' font-weight='bold' text-anchor='middle' fill='%2300f0ff' font-family='monospace'>Everything Converter</text></svg>",
+      "sizes": "540x720",
+      "type": "image/svg+xml",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1280 720'><rect width='1280' height='720' fill='%23090a0f'/><text x='640' y='360' font-size='80' font-weight='bold' text-anchor='middle' fill='%2300f0ff' font-family='monospace'>Everything Converter</text></svg>",
+      "sizes": "1280x720",
+      "type": "image/svg+xml",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Currency Converter",
+      "short_name": "Currency",
+      "description": "Quick currency conversion",
+      "url": "/?tool=currency",
+      "icons": []
+    },
+    {
+      "name": "History",
+      "short_name": "History",
+      "description": "View conversion history",
+      "url": "/?view=history",
+      "icons": []
+    },
+    {
+      "name": "Favorites",
+      "short_name": "Favorites",
+      "description": "Quick access to favorite tools",
+      "url": "/?view=favorites",
+      "icons": []
+    }
+  ],
+  "share_target": {
+    "action": "/share",
+    "method": "POST",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
+}

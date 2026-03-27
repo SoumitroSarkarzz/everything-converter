@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#00f0ff">
+    <meta name="description" content="Convert anything! Basic math, digital data, currency, health metrics, and more - pixel perfect conversions with a retro-futuristic UI.">
+    <meta name="keywords" content="converter, calculator, currency, units, digital, data, tools">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Everything Converter">
+    <title>Everything Converter</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Hardware Accelerated Interactive Cursor -->
+    <div id="glow-cursor"><div class="glow-trail"></div></div>
+
+    <!-- Background -->
+    <div class="noise-overlay"></div>
+    <div class="bg-animated"></div>
+    <div class="pixel-grid"></div>
+
+    <!-- Mobile Overlay -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- Intro Animation -->
+    <div class="intro-overlay" id="intro-overlay">
+        <div class="intro-content">
+            <div class="intro-logo">
+                <div class="pixel-logo-container">
+                    <div class="pixel-logo">
+                        <div class="pixel-fire">
+                            <div class="pixel-row">
+                                <div class="pixel empty"></div><div class="pixel fire-3"></div><div class="pixel fire-3"></div><div class="pixel empty"></div>
+                            </div>
+                            <div class="pixel-row">
+                                <div class="pixel fire-2"></div><div class="pixel fire-2"></div><div class="pixel fire-2"></div><div class="pixel fire-2"></div>
+                            </div>
+                            <div class="pixel-row">
+                                <div class="pixel fire-1"></div><div class="pixel fire-1"></div><div class="pixel fire-1"></div><div class="pixel fire-1"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="intro-text">
+                <h1 class="intro-title">EVERYTHING CONVERTER</h1>
+                <p class="intro-subtitle">PIXEL PERFECT CONVERSIONS</p>
+            </div>
+            <div class="intro-loader">
+                <div class="pixel-loader"><div class="pixel-bar"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-inner">
+                <div class="brand">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 16 16" width="36" height="36" shape-rendering="crispEdges">
+                            <defs>
+                                <linearGradient id="fireGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#ffeb3b"/>
+                                    <stop offset="50%" stop-color="#ff7300"/>
+                                    <stop offset="100%" stop-color="#ff007f"/>
+                                </linearGradient>
+                            </defs>
+                            <rect x="6" y="8" width="4" height="6" fill="url(#fireGrad)">
+                                <animate attributeName="height" values="6;8;5;6" dur="0.6s" repeatCount="indefinite" calcMode="discrete"/>
+                                <animate attributeName="y" values="8;6;9;8" dur="0.6s" repeatCount="indefinite" calcMode="discrete"/>
+                            </rect>
+                            <rect x="4" y="10" width="2" height="4" fill="#ff7300">
+                                <animate attributeName="y" values="10;12;10" dur="0.4s" repeatCount="indefinite" calcMode="discrete"/>
+                                <animate attributeName="height" values="4;2;4" dur="0.4s" repeatCount="indefinite" calcMode="discrete"/>
+                            </rect>
+                            <rect x="10" y="10" width="2" height="4" fill="#ff007f">
+                                <animate attributeName="y" values="10;8;10" dur="0.5s" repeatCount="indefinite" calcMode="discrete"/>
+                                <animate attributeName="fill" values="#ff007f;#ff7300;#ff007f" dur="0.5s" repeatCount="indefinite" calcMode="discrete"/>
+                            </rect>
+                            <rect x="3" y="14" width="10" height="2" fill="#8a2be2"/>
+                            <rect x="7" y="5" width="2" height="2" fill="#00f0ff">
+                                <animate attributeName="opacity" values="1;0;1" dur="0.8s" repeatCount="indefinite" calcMode="discrete"/>
+                                <animate attributeName="y" values="5;1;-2;5" dur="0.8s" repeatCount="indefinite"/>
+                            </rect>
+                            <rect x="11" y="7" width="2" height="2" fill="#ffeb3b">
+                                <animate attributeName="opacity" values="0;1;0" dur="0.7s" repeatCount="indefinite" calcMode="discrete"/>
+                                <animate attributeName="y" values="7;3;-1;7" dur="0.7s" repeatCount="indefinite"/>
+                            </rect>
+                        </svg>
+                    </div>
+                    <span class="brand-text">Everything Convertor</span>
+                </div>
+
+                <nav class="nav-menu">
+                    <button class="nav-btn active" data-target="basic">
+                        <svg class="nav-icon pixel-icon" viewBox="0 0 24 24" shape-rendering="crispEdges">
+                            <rect x="4" y="4" width="16" height="16" fill="none" stroke="#00f0ff" stroke-width="2"/>
+                            <rect x="8" y="8" width="8" height="8" fill="#00f0ff"/>
+                            <rect x="10" y="10" width="4" height="4" fill="#090a0f">
+                                <animate attributeName="fill" values="#090a0f;#8a2be2;#090a0f" dur="2s" repeatCount="indefinite"/>
+                            </rect>
+                            <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+                        </svg>
+                        Basic Math
+                    </button>
+                    <button class="nav-btn" data-target="digital">
+                        <svg class="nav-icon pixel-icon" viewBox="0 0 24 24" shape-rendering="crispEdges">
+                            <rect x="2" y="6" width="20" height="4" fill="#ffeb3b"/>
+                            <rect x="2" y="14" width="20" height="4" fill="#ffeb3b"/>
+                            <rect x="6" y="7" width="2" height="2" fill="#090a0f"/>
+                            <rect x="6" y="15" width="2" height="2" fill="#090a0f"/>
+                            <rect x="16" y="7" width="2" height="2" fill="#090a0f"/>
+                            <rect x="16" y="15" width="2" height="2" fill="#090a0f"/>
+                            <animate attributeName="opacity" values="1;0.5;1" dur="1.5s" repeatCount="indefinite"/>
+                        </svg>
+                        Digital &amp; Data
+                    </button>
+                    <button class="nav-btn" data-target="advanced">
+                        <svg class="nav-icon pixel-icon nav-icon-advanced" viewBox="0 0 24 24" shape-rendering="crispEdges">
+                            <polygon points="13,2 7,13 12,13 11,22 17,11 12,11" fill="#8a2be2"/>
+                            <rect x="11" y="11" width="2" height="2" fill="#d070ff">
+                                <animate attributeName="fill" values="#d070ff;#ffffff;#d070ff" dur="0.4s" repeatCount="indefinite" calcMode="discrete"/>
+                            </rect>
+                            <animateTransform attributeName="transform" type="translate" values="0,0;0,-1;0,0" dur="0.3s" repeatCount="indefinite" calcMode="discrete"/>
+                        </svg>
+                        Advanced
+                    </button>
+                    <button class="nav-btn" data-target="currency">
+                        <svg class="nav-icon pixel-icon" viewBox="0 0 24 24" shape-rendering="crispEdges">
+                            <rect x="11" y="2" width="2" height="20" fill="#0affaa"/>
+                            <rect x="5" y="7" width="14" height="2" fill="#0affaa"/>
+                            <rect x="5" y="15" width="14" height="2" fill="#0affaa"/>
+                            <rect x="7" y="9" width="10" height="6" fill="none" stroke="#0affaa" stroke-width="1"/>
+                            <text x="12" y="13" text-anchor="middle" fill="#090a0f" font-size="8" font-family="monospace">$</text>
+                            <animateTransform attributeName="transform" type="translate" values="0,0; 0,-2; 0,0" dur="3s" repeatCount="indefinite"/>
+                        </svg>
+                        Currency
+                    </button>
+                    <button class="nav-btn" data-target="student">
+                        <svg class="nav-icon pixel-icon" viewBox="0 0 24 24" shape-rendering="crispEdges">
+                            <polygon points="12,4 2,10 22,10" fill="#ff7300"/>
+                            <rect x="4" y="10" width="16" height="8" fill="#ff7300"/>
+                            <polygon points="6,18 12,20 18,18" fill="#ff7300"/>
+                            <rect x="10" y="12" width="4" height="4" fill="#090a0f"/>
+                            <animateTransform attributeName="transform" type="rotate" values="0 12 12; 2 12 12; 0 12 12" dur="4s" repeatCount="indefinite"/>
+                        </svg>
+                        Student Tools
+                    </button>
+                    <button class="nav-btn" data-target="health">
+                        <svg class="nav-icon pixel-icon" viewBox="0 0 24 24" shape-rendering="crispEdges">
+                            <rect x="4" y="6" width="4" height="4" fill="#ff007f"/>
+                            <rect x="16" y="6" width="4" height="4" fill="#ff007f"/>
+                            <rect x="2" y="8" width="4" height="4" fill="#ff007f"/>
+                            <rect x="18" y="8" width="4" height="4" fill="#ff007f"/>
+                            <rect x="2" y="10" width="20" height="4" fill="#ff007f"/>
+                            <rect x="4" y="14" width="16" height="4" fill="#ff007f"/>
+                            <rect x="6" y="18" width="12" height="4" fill="#ff007f"/>
+                            <rect x="8" y="20" width="8" height="2" fill="#ff007f"/>
+                            <rect x="10" y="10" width="4" height="4" fill="#ffeb3b">
+                                <animate attributeName="fill" values="#ffeb3b;#ff7300;#ffeb3b" dur="1s" repeatCount="indefinite"/>
+                            </rect>
+                            <animate attributeName="opacity" values="1;0.6;1" dur="1s" repeatCount="indefinite"/>
+                        </svg>
+                        Health
+                    </button>
+                    <button class="nav-btn" data-target="extra">
+                        <svg class="nav-icon pixel-icon nav-icon-extra" viewBox="0 0 24 24" shape-rendering="crispEdges">
+                            <rect x="10" y="10" width="4" height="4" fill="#ff007f"/>
+                            <rect x="11" y="3" width="2" height="6" fill="#ff007f"/>
+                            <rect x="11" y="15" width="2" height="6" fill="#ff007f"/>
+                            <rect x="3" y="11" width="6" height="2" fill="#ff007f"/>
+                            <rect x="15" y="11" width="6" height="2" fill="#ff007f"/>
+                            <rect x="5" y="5" width="2" height="2" fill="#ff007f">
+                                <animate attributeName="opacity" values="1;0;1" dur="1s" begin="0s" repeatCount="indefinite" calcMode="discrete"/>
+                            </rect>
+                            <rect x="17" y="5" width="2" height="2" fill="#ff007f">
+                                <animate attributeName="opacity" values="0;1;0" dur="1s" begin="0.25s" repeatCount="indefinite" calcMode="discrete"/>
+                            </rect>
+                            <rect x="5" y="17" width="2" height="2" fill="#ff007f">
+                                <animate attributeName="opacity" values="1;0;1" dur="1s" begin="0.5s" repeatCount="indefinite" calcMode="discrete"/>
+                            </rect>
+                            <rect x="17" y="17" width="2" height="2" fill="#ff007f">
+                                <animate attributeName="opacity" values="0;1;0" dur="1s" begin="0.75s" repeatCount="indefinite" calcMode="discrete"/>
+                            </rect>
+                        </svg>
+                        Extra Tools
+                    </button>
+                    <button class="nav-btn" data-target="history">
+                        <svg class="nav-icon pixel-icon" viewBox="0 0 24 24" shape-rendering="crispEdges">
+                            <circle cx="12" cy="12" r="10" fill="none" stroke="#8a2be2" stroke-width="2"/>
+                            <rect x="10" y="6" width="4" height="2" fill="#8a2be2"/>
+                            <rect x="12" y="6" width="2" height="8" fill="#8a2be2"/>
+                            <rect x="6" y="10" width="2" height="2" fill="#8a2be2"/>
+                            <rect x="16" y="14" width="2" height="2" fill="#8a2be2"/>
+                            <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
+                        </svg>
+                        History
+                    </button>
+                    <button class="nav-btn" data-target="favorites">
+                        <svg class="nav-icon pixel-icon" viewBox="0 0 24 24" shape-rendering="crispEdges">
+                            <rect x="11" y="2" width="2" height="4" fill="#ffeb3b"/>
+                            <rect x="9" y="4" width="2" height="2" fill="#ffeb3b"/>
+                            <rect x="13" y="4" width="2" height="2" fill="#ffeb3b"/>
+                            <rect x="7" y="6" width="2" height="2" fill="#ffeb3b"/>
+                            <rect x="15" y="6" width="2" height="2" fill="#ffeb3b"/>
+                            <rect x="5" y="8" width="2" height="2" fill="#ffeb3b"/>
+                            <rect x="17" y="8" width="2" height="2" fill="#ffeb3b"/>
+                            <rect x="7" y="10" width="2" height="2" fill="#ffeb3b"/>
+                            <rect x="15" y="10" width="2" height="2" fill="#ffeb3b"/>
+                            <rect x="9" y="12" width="2" height="2" fill="#ffeb3b"/>
+                            <rect x="13" y="12" width="2" height="2" fill="#ffeb3b"/>
+                            <rect x="11" y="14" width="2" height="2" fill="#ffeb3b"/>
+                            <rect x="11" y="16" width="2" height="2" fill="#ffeb3b"/>
+                            <rect x="9" y="18" width="2" height="2" fill="#ffeb3b"/>
+                            <rect x="13" y="18" width="2" height="2" fill="#ffeb3b"/>
+                            <rect x="11" y="20" width="2" height="2" fill="#ffeb3b"/>
+                            <rect x="11" y="10" width="2" height="2" fill="#ff007f">
+                                <animate attributeName="fill" values="#ff007f;#ffeb3b;#ff007f" dur="1.5s" repeatCount="indefinite"/>
+                            </rect>
+                            <animate attributeName="opacity" values="1;0.7;1" dur="2s" repeatCount="indefinite"/>
+                        </svg>
+                        Favorites
+                    </button>
+                </nav>
+
+                <!-- Theme Selector -->
+                <div class="theme-selector">
+                    <div class="theme-header"><span class="theme-title">Theme</span></div>
+                    <div class="theme-options">
+                        <button class="theme-btn active" data-theme="cyber-neon" title="Cyber Neon"><span class="theme-preview cyber-neon"></span></button>
+                        <button class="theme-btn" data-theme="red-white" title="Red &amp; White"><span class="theme-preview red-white"></span></button>
+                        <button class="theme-btn" data-theme="monochrome" title="Monochrome"><span class="theme-preview monochrome"></span></button>
+                        <button class="theme-btn" data-theme="blue" title="Blue"><span class="theme-preview blue"></span></button>
+                        <button class="theme-btn" data-theme="green" title="Green"><span class="theme-preview green"></span></button>
+                    </div>
+                </div>
+                <div class="sidebar-footer"><p class="branding-footer">Created by &quot;Soumitro&quot;</p></div>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <header class="top-header">
+                <!-- Hamburger + Brand (mobile) -->
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="Open menu" aria-expanded="false">
+                    <span class="ham-line"></span>
+                    <span class="ham-line"></span>
+                    <span class="ham-line"></span>
+                </button>
+                <div class="mobile-brand">
+                    <div class="logo-icon">
+                        <svg viewBox="0 0 16 16" width="24" height="24" shape-rendering="crispEdges">
+                            <rect x="6" y="8" width="4" height="6" fill="url(#fireGrad)"/>
+                            <rect x="4" y="10" width="2" height="4" fill="#ff7300"/>
+                            <rect x="10" y="10" width="2" height="4" fill="#ff007f"/>
+                            <rect x="3" y="14" width="10" height="2" fill="#8a2be2"/>
+                        </svg>
+                    </div>
+                    <span class="mobile-brand-text">Everything Converter</span>
+                </div>
+
+                <!-- Header Actions -->
+                <div class="header-actions">
+                    <button class="action-btn" id="history-btn" title="History">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle><polyline points="12,6 12,12 16,14"></polyline>
+                        </svg>
+                    </button>
+                    <button class="action-btn" id="favorites-btn" title="Favorites">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"></polygon>
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Search -->
+                <div class="search-container">
+                    <div class="search-bar">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        <input type="text" id="global-search" placeholder="Search tools… (Ctrl+K)" autocomplete="off" spellcheck="false">
+                        <button class="icon-btn voice-search-btn" id="voice-search-btn" title="Voice Search" aria-label="Voice Search">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                                <line x1="12" y1="19" x2="12" y2="23"></line>
+                                <line x1="8" y1="23" x2="16" y2="23"></line>
+                            </svg>
+                        </button>
+                        <span id="voice-status" class="voice-status" aria-live="polite"></span>
+                    </div>
+                    <!-- Recent Searches -->
+                    <div class="recent-searches" id="recent-searches" style="display:none;">
+                        <div class="search-results-header">
+                            <span class="results-title">Recent Searches</span>
+                            <button class="clear-recent-btn" id="clear-recent-searches">Clear</button>
+                        </div>
+                        <div id="recent-searches-list"></div>
+                    </div>
+                    <!-- Search Results Dropdown -->
+                    <div class="search-results" id="search-results" style="display:none;">
+                        <div class="search-results-header"><span class="results-title">Results</span></div>
+                        <div class="search-results-list" id="search-results-list"></div>
+                        <div class="search-results-footer" id="search-results-footer" style="display:none;">
+                            <span class="no-results">No results found</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="views-wrapper">
+                <section class="view active" id="view-basic"><div class="card-grid"></div></section>
+                <section class="view" id="view-digital"><div class="card-grid"></div></section>
+                <section class="view" id="view-advanced"><div class="card-grid"></div></section>
+                <section class="view" id="view-currency"><div class="card-grid"></div></section>
+
+                <section class="view" id="view-health">
+                    <div class="card-grid">
+                        <!-- BMI Calculator -->
+                        <div class="glass-card custom-tool-card" data-search="bmi calculator health weight" data-id="bmi-calculator">
+                            <div class="card-header"><h3 class="card-title">BMI Calculator</h3></div>
+                            <div class="card-body">
+                                <div class="bmi-row">
+                                    <div class="input-group"><input type="number" id="weight-input" class="val-input" placeholder="70" step="0.1"><span class="unit-label">Weight (kg)</span></div>
+                                    <div class="input-group"><input type="number" id="height-input" class="val-input" placeholder="175" step="0.1"><span class="unit-label">Height (cm)</span></div>
+                                </div>
+                                <div class="output-group mt-3"><input type="text" id="bmi-result" class="val-output" placeholder="--" readonly><span class="unit-label">BMI</span></div>
+                                <div class="bmi-category mt-3" id="bmi-category"></div>
+                            </div>
+                        </div>
+                        <!-- Heart Rate Zones -->
+                        <div class="glass-card custom-tool-card" data-search="heart rate zones fitness health" data-id="heart-rate-zones">
+                            <div class="card-header"><h3 class="card-title">Heart Rate Zones</h3></div>
+                            <div class="card-body">
+                                <div class="input-group"><input type="number" id="age-input" class="val-input" placeholder="25" min="1" max="120"><span class="unit-label">Age</span></div>
+                                <div class="heart-rate-zones mt-3">
+                                    <div class="zone-row"><span class="zone-label">Resting:</span><span class="zone-value" id="resting-hr">60-100 bpm</span></div>
+                                    <div class="zone-row"><span class="zone-label">Fat Burn:</span><span class="zone-value" id="fatburn-hr">-- bpm</span></div>
+                                    <div class="zone-row"><span class="zone-label">Cardio:</span><span class="zone-value" id="cardio-hr">-- bpm</span></div>
+                                    <div class="zone-row"><span class="zone-label">Peak:</span><span class="zone-value" id="peak-hr">-- bpm</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Calorie Calculator -->
+                        <div class="glass-card custom-tool-card" data-search="calorie calculator daily needs health" data-id="calorie-calculator">
+                            <div class="card-header"><h3 class="card-title">Daily Calorie Needs</h3></div>
+                            <div class="card-body">
+                                <div class="calorie-row">
+                                    <div class="input-group"><input type="number" id="cal-weight" class="val-input small-in" placeholder="70" step="0.1"><span class="unit-label">Weight (kg)</span></div>
+                                    <div class="input-group"><input type="number" id="cal-height" class="val-input small-in" placeholder="175" step="0.1"><span class="unit-label">Height (cm)</span></div>
+                                </div>
+                                <div class="calorie-row">
+                                    <div class="input-group"><input type="number" id="cal-age" class="val-input small-in" placeholder="25" min="1" max="120"><span class="unit-label">Age</span></div>
+                                    <div class="input-group"><select id="cal-gender" class="unit-select"><option value="male">Male</option><option value="female">Female</option></select><span class="unit-label">Gender</span></div>
+                                </div>
+                                <div class="calorie-row">
+                                    <div class="input-group"><select id="cal-activity" class="unit-select"><option value="sedentary">Sedentary</option><option value="light">Light Exercise</option><option value="moderate">Moderate Exercise</option><option value="active">Very Active</option></select><span class="unit-label">Activity Level</span></div>
+                                </div>
+                                <div class="calorie-results mt-3">
+                                    <div class="calorie-result"><span class="result-label">Daily Calories:</span><span class="result-value" id="daily-calories">-- kcal</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="view" id="view-student">
+                    <div class="card-grid">
+                        <div class="glass-card custom-tool-card" data-search="percentage calculator student" data-id="percentage">
+                            <div class="card-header"><h3 class="card-title">Percentage Calculator</h3></div>
+                            <div class="card-body">
+                                <div class="student-row">
+                                    <label>What is</label>
+                                    <input type="number" id="perc-val1" class="val-input small-in" placeholder="20">
+                                    <label>% of</label>
+                                    <input type="number" id="perc-val2" class="val-input small-in" placeholder="100">
+                                </div>
+                                <div class="output-row mt-3"><div class="result-badge" id="perc-result">--</div></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card custom-tool-card" data-search="fraction decimal student" data-id="fraction">
+                            <div class="card-header"><h3 class="card-title">Fraction ↔ Decimal</h3></div>
+                            <div class="card-body">
+                                <div class="input-group"><input type="text" id="frac-input" class="val-input" placeholder="e.g. 3/4 or 0.75"><span class="unit-label">Input</span></div>
+                                <div class="output-group mt-3"><input type="text" id="frac-result" class="val-output" placeholder="Result" readonly><span class="unit-label">Result</span></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card custom-tool-card" data-search="cgpa percentage student" data-id="cgpa">
+                            <div class="card-header"><h3 class="card-title">CGPA to Percentage</h3></div>
+                            <div class="card-body">
+                                <div class="input-group"><input type="number" id="cgpa-input" class="val-input" placeholder="e.g. 8.5" step="0.1" max="10"><span class="unit-label">CGPA</span></div>
+                                <div class="output-group mt-3"><input type="text" id="cgpa-result" class="val-output" placeholder="--" readonly><span class="unit-label">%</span></div>
+                                <p class="helper-text mt-2">* Assuming multiplier of 9.5</p>
+                            </div>
+                        </div>
+
+                        <div class="glass-card custom-tool-card" data-search="age calculator birthday" data-id="age-calculator">
+                            <div class="card-header"><h3 class="card-title">Age Calculator</h3></div>
+                            <div class="card-body">
+                                <div class="input-group"><input type="date" id="birth-date" class="val-input"><span class="unit-label">Birth Date</span></div>
+                                <div class="output-group mt-3"><input type="text" id="age-result" class="val-output" placeholder="Select date" readonly><span class="unit-label">Age</span></div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card custom-tool-card" data-search="tip calculator bill split" data-id="tip-calculator">
+                            <div class="card-header"><h3 class="card-title">Tip Calculator</h3></div>
+                            <div class="card-body">
+                                <div class="input-group"><input type="number" id="bill-amount" class="val-input" placeholder="100.00" step="0.01"><span class="unit-label">Bill Amount</span></div>
+                                <div class="tip-row">
+                                    <div class="input-group"><input type="number" id="tip-percent" class="val-input" placeholder="15" min="0" max="100"><span class="unit-label">Tip %</span></div>
+                                    <div class="input-group"><input type="number" id="people-count" class="val-input" placeholder="1" min="1"><span class="unit-label">People</span></div>
+                                </div>
+                                <div class="tip-results mt-3">
+                                    <div class="tip-result-row"><span>Tip Amount:</span><span id="tip-amount">$0.00</span></div>
+                                    <div class="tip-result-row"><span>Total:</span><span id="total-amount">$0.00</span></div>
+                                    <div class="tip-result-row"><span>Per Person:</span><span id="per-person">$0.00</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card custom-tool-card" data-search="time zone converter world clock" data-id="timezone-converter">
+                            <div class="card-header"><h3 class="card-title">Time Zone Converter</h3></div>
+                            <div class="card-body">
+                                <div class="timezone-row">
+                                    <div class="input-group"><input type="datetime-local" id="source-time" class="val-input"><span class="unit-label">Source Time</span></div>
+                                    <div class="input-group">
+                                        <select id="source-timezone" class="unit-select">
+                                            <option value="UTC">UTC</option>
+                                            <option value="America/New_York">New York (EST/EDT)</option>
+                                            <option value="America/Los_Angeles">Los Angeles (PST/PDT)</option>
+                                            <option value="Europe/London">London (GMT/BST)</option>
+                                            <option value="Europe/Paris">Paris (CET/CEST)</option>
+                                            <option value="Asia/Tokyo">Tokyo (JST)</option>
+                                            <option value="Asia/Shanghai">Shanghai (CST)</option>
+                                            <option value="Asia/Dubai">Dubai (GST)</option>
+                                            <option value="Asia/Kolkata">India (IST)</option>
+                                            <option value="Australia/Sydney">Sydney (AEST/AEDT)</option>
+                                        </select>
+                                        <span class="unit-label">From</span>
+                                    </div>
+                                </div>
+                                <div class="timezone-row">
+                                    <div class="input-group">
+                                        <select id="target-timezone" class="unit-select">
+                                            <option value="America/New_York">New York (EST/EDT)</option>
+                                            <option value="America/Los_Angeles">Los Angeles (PST/PDT)</option>
+                                            <option value="Europe/London">London (GMT/BST)</option>
+                                            <option value="Europe/Paris">Paris (CET/CEST)</option>
+                                            <option value="Asia/Tokyo">Tokyo (JST)</option>
+                                            <option value="Asia/Shanghai">Shanghai (CST)</option>
+                                            <option value="Asia/Dubai">Dubai (GST)</option>
+                                            <option value="Asia/Kolkata">India (IST)</option>
+                                            <option value="Australia/Sydney">Sydney (AEST/AEDT)</option>
+                                            <option value="UTC">UTC</option>
+                                        </select>
+                                        <span class="unit-label">To</span>
+                                    </div>
+                                </div>
+                                <div class="timezone-results mt-3">
+                                    <div class="timezone-result"><span class="result-label">Target Time:</span><span class="result-value" id="target-time-result">--</span></div>
+                                    <div class="timezone-result"><span class="result-label">Time Difference:</span><span class="result-value" id="time-diff-result">--</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card custom-tool-card" data-search="date difference calculator days between" data-id="date-difference">
+                            <div class="card-header"><h3 class="card-title">Date Difference</h3></div>
+                            <div class="card-body">
+                                <div class="date-row">
+                                    <div class="input-group"><input type="date" id="date-from" class="val-input"><span class="unit-label">From Date</span></div>
+                                    <div class="input-group"><input type="date" id="date-to" class="val-input"><span class="unit-label">To Date</span></div>
+                                </div>
+                                <div class="date-results mt-3">
+                                    <div class="date-result"><span class="result-label">Days:</span><span class="result-value" id="days-diff">0</span></div>
+                                    <div class="date-result"><span class="result-label">Weeks:</span><span class="result-value" id="weeks-diff">0</span></div>
+                                    <div class="date-result"><span class="result-label">Months:</span><span class="result-value" id="months-diff">0</span></div>
+                                    <div class="date-result"><span class="result-label">Years:</span><span class="result-value" id="years-diff">0</span></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card custom-tool-card" data-search="scientific calculator math advanced" data-id="scientific-calculator">
+                            <div class="card-header"><h3 class="card-title">Scientific Calculator</h3></div>
+                            <div class="card-body">
+                                <div class="input-group"><input type="text" id="sci-calc-input" class="val-input" placeholder="e.g., sin(45) + log(10)" autocomplete="off"></div>
+                                <div class="sci-functions">
+                                    <div class="func-row">
+                                        <button class="func-btn" data-func="sin">sin</button>
+                                        <button class="func-btn" data-func="cos">cos</button>
+                                        <button class="func-btn" data-func="tan">tan</button>
+                                        <button class="func-btn" data-func="log">log</button>
+                                    </div>
+                                    <div class="func-row">
+                                        <button class="func-btn" data-func="sqrt">√</button>
+                                        <button class="func-btn" data-func="pow">x^y</button>
+                                        <button class="func-btn" data-func="pi">π</button>
+                                        <button class="func-btn" data-func="e">e</button>
+                                    </div>
+                                </div>
+                                <div class="output-group mt-3"><input type="text" id="sci-calc-result" class="val-output" placeholder="=" readonly></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="view" id="view-extra">
+                    <div class="card-grid">
+                        <!-- Multi-Convert Mode -->
+                        <div class="glass-card custom-tool-card multi-convert-card" data-search="multi convert batch multiple" data-id="multi-convert">
+                            <div class="card-header"><h3 class="card-title">Multi-Convert Mode</h3></div>
+                            <div class="card-body">
+                                <div class="multi-row">
+                                    <input type="number" class="val-input multi-input" placeholder="Enter value">
+                                    <select class="unit-select multi-unit-from">
+                                        <option value="m">Meters</option><option value="km">Kilometers</option><option value="ft">Feet</option>
+                                    </select>
+                                </div>
+                                <div class="multi-convert-outputs" id="multi-convert-outputs">
+                                    <div class="output-header">Convert to multiple units:</div>
+                                    <div class="checkboxes multi-targets">
+                                        <label class="cb-container"><input type="checkbox" class="multi-target" value="km" checked><span class="cb-custom"></span> Kilometers</label>
+                                        <label class="cb-container"><input type="checkbox" class="multi-target" value="m" checked><span class="cb-custom"></span> Meters</label>
+                                        <label class="cb-container"><input type="checkbox" class="multi-target" value="ft" checked><span class="cb-custom"></span> Feet</label>
+                                        <label class="cb-container"><input type="checkbox" class="multi-target" value="in"><span class="cb-custom"></span> Inches</label>
+                                    </div>
+                                    <div class="multi-results" id="multi-results"></div>
+                                </div>
+                                <button class="primary-btn mt-3" id="multi-convert-btn">Convert All</button>
+                            </div>
+                        </div>
+
+                        <!-- Password Generator -->
+                        <div class="glass-card custom-tool-card" data-search="password generator security" data-id="password">
+                            <div class="card-header"><h3 class="card-title">Password Gen</h3></div>
+                            <div class="card-body">
+                                <div class="pass-result-box">
+                                    <span id="pass-output">P@ssw0rd!</span>
+                                    <button class="icon-btn" id="pass-copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg></button>
+                                </div>
+                                <div class="pass-controls mt-4">
+                                    <div class="slider-row">
+                                        <label>Length: <span id="pass-len-val">16</span></label>
+                                        <input type="range" id="pass-length" min="6" max="64" value="16">
+                                    </div>
+                                    <div class="checkboxes">
+                                        <label class="cb-container"><input type="checkbox" id="pass-upper" checked><span class="cb-custom"></span> Uppercase</label>
+                                        <label class="cb-container"><input type="checkbox" id="pass-lower" checked><span class="cb-custom"></span> Lowercase</label>
+                                        <label class="cb-container"><input type="checkbox" id="pass-num" checked><span class="cb-custom"></span> Numbers</label>
+                                        <label class="cb-container"><input type="checkbox" id="pass-sym" checked><span class="cb-custom"></span> Symbols</label>
+                                    </div>
+                                    <button class="primary-btn mt-3" id="pass-generate">Generate</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Color Converter -->
+                        <div class="glass-card custom-tool-card" data-search="color converter hex rgb hsl" data-id="color-converter">
+                            <div class="card-header"><h3 class="card-title">Color Converter</h3></div>
+                            <div class="card-body">
+                                <div class="color-inputs">
+                                    <div class="input-group"><input type="text" id="hex-input" class="val-input" placeholder="#FF5733" maxlength="7"><span class="unit-label">HEX</span></div>
+                                    <div class="color-row">
+                                        <div class="input-group"><input type="number" id="rgb-r" class="val-input small-in" placeholder="255" min="0" max="255"><span class="unit-label">R</span></div>
+                                        <div class="input-group"><input type="number" id="rgb-g" class="val-input small-in" placeholder="87" min="0" max="255"><span class="unit-label">G</span></div>
+                                        <div class="input-group"><input type="number" id="rgb-b" class="val-input small-in" placeholder="51" min="0" max="255"><span class="unit-label">B</span></div>
+                                    </div>
+                                    <div class="color-row">
+                                        <div class="input-group"><input type="number" id="hsl-h" class="val-input small-in" placeholder="0" min="0" max="360"><span class="unit-label">H</span></div>
+                                        <div class="input-group"><input type="number" id="hsl-s" class="val-input small-in" placeholder="100" min="0" max="100"><span class="unit-label">S%</span></div>
+                                        <div class="input-group"><input type="number" id="hsl-l" class="val-input small-in" placeholder="60" min="0" max="100"><span class="unit-label">L%</span></div>
+                                    </div>
+                                </div>
+                                <div class="color-preview mt-3" id="color-preview">
+                                    <div class="preview-box" id="preview-box"></div>
+                                    <div class="color-codes" id="color-codes">
+                                        <div class="color-code">HEX: <span id="hex-output">#000000</span></div>
+                                        <div class="color-code">RGB: <span id="rgb-output">rgb(0,0,0)</span></div>
+                                        <div class="color-code">HSL: <span id="hsl-output">hsl(0,0%,0%)</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Base64 -->
+                        <div class="glass-card custom-tool-card" data-search="base64 encode decode" data-id="base64-encode">
+                            <div class="card-header"><h3 class="card-title">Base64 Encoder/Decoder</h3></div>
+                            <div class="card-body">
+                                <div class="base64-mode">
+                                    <label class="cb-container"><input type="radio" name="base64-mode" value="encode" checked><span class="cb-custom"></span> Encode</label>
+                                    <label class="cb-container"><input type="radio" name="base64-mode" value="decode"><span class="cb-custom"></span> Decode</label>
+                                </div>
+                                <div class="input-group mt-3"><textarea id="base64-input" class="val-input" placeholder="Enter text to encode/decode" rows="4"></textarea><span class="unit-label">Input</span></div>
+                                <div class="btn-row mt-3">
+                                    <button class="primary-btn" id="base64-convert">Convert</button>
+                                    <button class="secondary-btn" id="base64-copy">Copy Output</button>
+                                </div>
+                                <div class="input-group mt-3"><textarea id="base64-output" class="val-output" placeholder="Output will appear here" rows="4" readonly></textarea><span class="unit-label">Output</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Video Compressor -->
+                        <div class="glass-card custom-tool-card" data-search="video compressor reduce size mb" data-id="video-compression">
+                            <div class="card-header"><h3 class="card-title">Video Compressor</h3></div>
+                            <div class="card-body">
+                                <div class="video-compressor-controls">
+                                    <div class="input-group">
+                                        <input type="file" id="video-upload" accept="video/*" class="file-input">
+                                        <label for="video-upload" class="file-label">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17,8 12,3 7,8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                                            Choose Video File
+                                        </label>
+                                    </div>
+                                    <div id="video-info" class="video-info" style="display:none;">
+                                        <div class="video-details">
+                                            <div class="video-detail-item"><span class="detail-label">Original Size:</span><span class="detail-value" id="original-size">-</span></div>
+                                            <div class="video-detail-item"><span class="detail-label">Duration:</span><span class="detail-value" id="video-duration">-</span></div>
+                                            <div class="video-detail-item"><span class="detail-label">Resolution:</span><span class="detail-value" id="video-resolution-info">-</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group"><input type="number" id="target-size" class="val-input" placeholder="10" min="1" max="500" step="0.1"><span class="unit-label">Target Size (MB)</span></div>
+                                    <div class="input-group">
+                                        <select id="compression-quality" class="unit-select">
+                                            <option value="high">High Quality (Larger File)</option>
+                                            <option value="medium" selected>Medium Quality (Balanced)</option>
+                                            <option value="low">Low Quality (Smaller File)</option>
+                                        </select>
+                                        <span class="unit-label">Compression Level</span>
+                                    </div>
+                                    <div class="compression-preview" id="compression-preview" style="display:none;">
+                                        <div class="preview-stats">
+                                            <div class="stat-item"><span class="stat-label">Estimated Size:</span><span class="stat-value" id="estimated-size">-</span></div>
+                                            <div class="stat-item"><span class="stat-label">Compression Ratio:</span><span class="stat-value" id="compression-ratio">-</span></div>
+                                            <div class="stat-item"><span class="stat-label">Quality Loss:</span><span class="stat-value" id="quality-loss">-</span></div>
+                                        </div>
+                                    </div>
+                                    <div class="video-actions">
+                                        <button class="primary-btn" id="compress-video" disabled>Compress Video</button>
+                                        <button class="secondary-btn" id="download-compressed" style="display:none;">Download Compressed</button>
+                                    </div>
+                                    <div class="compression-progress" id="compression-progress" style="display:none;">
+                                        <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+                                        <div class="progress-text" id="progress-text">Compressing...</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Image Converter -->
+                        <div class="glass-card custom-tool-card" data-search="image converter format resize" data-id="image-converter">
+                            <div class="card-header"><h3 class="card-title">Image Converter</h3></div>
+                            <div class="card-body">
+                                <input type="file" id="img-upload" accept="image/*" class="mb-3">
+                                <canvas id="img-canvas" class="img-preview mb-3"></canvas>
+                                <div id="img-controls" style="display:none;">
+                                    <select id="img-format-sel" class="unit-select mb-3">
+                                        <option value="png">PNG</option><option value="jpeg">JPEG</option><option value="webp">WebP</option>
+                                    </select>
+                                    <button class="primary-btn" id="img-download">Download Image</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- History Page -->
+                <section class="view" id="view-history">
+                    <div class="history-container">
+                        <div class="glass-card">
+                            <div class="card-header">
+                                <h3 class="card-title">Conversion History</h3>
+                                <button class="icon-btn" id="clear-history-btn" title="Clear History">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3,6 5,6 21,6"></polyline><path d="m19,6v14a2,2 0 0,1 -2,2H7a2,2 0 0,1 -2,-2V6m3,0V4a2,2 0 0,1 2,-2h4a2,2 0 0,1 2,2v2"></path></svg>
+                                </button>
+                            </div>
+                            <div class="card-body">
+                                <div id="history-list" class="history-list"></div>
+                                <div id="empty-history" class="empty-state" style="display:none;"><p>No conversion history yet. Start using the converters to see your history here.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Favorites Page -->
+                <section class="view" id="view-favorites">
+                    <div class="favorites-container">
+                        <div class="glass-card">
+                            <div class="card-header"><h3 class="card-title">Favorite Converters</h3></div>
+                            <div class="card-body">
+                                <div id="favorites-list" class="favorites-list"></div>
+                                <div id="empty-favorites" class="empty-state" style="display:none;"><p>No favorite converters yet. Click the ⭐ star icon on any converter card to add it here.</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Converter Card Template -->
+    <template id="converter-card-template">
+        <div class="glass-card converter-card">
+            <div class="card-header">
+                <h3 class="card-title">Title</h3>
+            </div>
+            <div class="card-body">
+                <div class="input-group">
+                    <input type="number" class="val-input input-field" placeholder="0">
+                    <div class="select-wrapper">
+                        <select class="unit-select unit-from"></select>
+                        <svg class="select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                </div>
+                <div class="swap-row">
+                    <button class="action-btn swap-btn" title="Swap Units">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 8 16 13"></polyline><line x1="21" y1="8" x2="9" y2="8"></line><polyline points="8 21 3 16 8 11"></polyline><line x1="3" y1="16" x2="15" y2="16"></line></svg>
+                    </button>
+                </div>
+                <div class="input-group output-group">
+                    <input type="text" class="val-output output-field" placeholder="0" readonly>
+                    <div class="select-wrapper">
+                        <select class="unit-select unit-to"></select>
+                        <svg class="select-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </div>
+                </div>
+                <div class="card-actions mt-3">
+                    <button class="secondary-btn copy-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                        Copy
+                    </button>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <!-- Toast -->
+    <div class="toast-notification" id="toast">Copied to clipboard</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
