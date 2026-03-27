@@ -1,51 +1,108 @@
-# Everything Converter - Pixel Perfect Conversions
+# Everything Converter
 
-A comprehensive, mobile-responsive converter tool with a retro-futuristic pixel-art UI. Convert anything: lengths, weights, temperatures, currencies, and much more!
+A comprehensive, pixel-perfect converter tool with a retro-futuristic UI. Convert lengths, weights, temperatures, currencies, and much more—all in one place!
 
-## Features
+![Everything Converter](https://via.placeholder.com/800x400/090a0f/00f0ff?text=Everything+Converter+Screenshot)
 
-### 🎯 Core Conversions
+## 🌟 Features
+
+### 🔧 Core Conversions
 - **Basic Math**: Length, Weight, Temperature, Volume, Area, Speed, Time, Data Storage
-- **Digital & Data**: Binary/Hexadecimal, Data Transfer Speed, Password Generator, QR Code Generator
+- **Digital Tools**: Password Generator, QR Code Generator, Hash Generator, Text Case Converter, URL Shortener
 - **Advanced**: Scientific Calculator, Color Converter (HEX/RGB/HSL), Base64 Encoder/Decoder, URL Encoder/Decoder, Regex Tester
 - **Currency**: Live currency conversion with offline caching
 - **Student Tools**: Percentage Calculator, Fraction Converter, CGPA to Percentage, Age Calculator, Tip Calculator
 - **Health**: BMI Calculator, Heart Rate Zones, Daily Calorie Needs
-- **Extra**: Multi-Convert Mode, Time Zone Converter, Date Difference Calculator, Video Compressor
+- **Extra**: Multi-Convert Mode, Time Zone Converter, Date Difference Calculator, Video Resolution Helper
 
-### ✨ User Experience
-- **Fully Responsive**: Works perfectly on desktop, tablet, and mobile phones
+### 🎨 User Experience
+- **Fully Responsive**: Optimized for desktop, tablet, and mobile
 - **Progressive Web App (PWA)**: Install as an app on mobile devices
-- **Offline Support**: Use most tools offline with cached data
-- **Voice Search**: Search tools using voice commands
-- **Search & Filter**: Intelligent search with fuzzy matching
-- **Favorites System**: Mark favorite tools for quick access
+- **Voice Search**: Search tools using voice commands (requires HTTPS)
+- **Intelligent Search**: Fuzzy matching for quick tool discovery
+- **Favorites System**: Save favorite tools for easy access
 - **History Tracking**: All conversions saved locally with timestamps
-- **Multiple Themes**: 5 beautiful theme options (Cyber Neon, Red & White, Monochrome, Blue, Green)
+- **Multiple Themes**: 5 beautiful themes (Cyber Neon, Red & White, Monochrome, Blue, Green)
+- **Offline Support**: Works offline with cached data
 
-### 🚀 Performance
+### ⚡ Performance
 - **No Backend Required**: 100% client-side processing
-- **Fast Loading**: Minimal dependencies, optimized assets
+- **Fast Loading**: Minimal dependencies, optimized code
 - **Data Privacy**: All data stays on your device (localStorage only)
-- **Offline First**: Works without internet connection
+- **Service Worker**: Caching for offline functionality
 
-## Deployment
+## 🚀 Quick Start
 
-### Option 1: Static Hosting (Recommended)
-Perfect for: Vercel, Netlify, GitHub Pages, AWS S3 + CloudFront
+### Local Development
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/SoumitroSarkarzz/everything-converter.git
+   cd everything-converter
+   ```
 
-Simply upload these files:
-- `index.html`
-- `style.css`
-- `script.js`
-- `sw.js` (Service Worker)
-- `manifest.json`
-- `.htaccess` (if using Apache)
+2. Start a local server:
+   ```bash
+   python3 -m http.server 8000
+   ```
 
-**Vercel Deployment:**
-```bash
-npm install -g vercel
-vercel
+3. Open `http://localhost:8000` in your browser.
+
+### Deployment
+
+#### Netlify (Recommended)
+1. Connect your GitHub repository to Netlify.
+2. Deploy automatically—Netlify handles the build process.
+3. Your site will be live at `https://your-site-name.netlify.app`.
+
+#### Other Platforms
+- **Vercel**: Connect repo and deploy.
+- **GitHub Pages**: Enable Pages in repository settings.
+- **Manual**: Upload files to any static hosting service.
+
+## 🛠️ Technologies Used
+
+- **HTML5**: Semantic markup and structure
+- **CSS3**: Custom properties, animations, responsive design
+- **JavaScript (ES6+)**: Vanilla JS, no frameworks
+- **PWA**: Service Worker, Web App Manifest
+- **APIs**: Web Speech API, Clipboard API, localStorage
+
+## 📱 Usage
+
+1. **Search**: Use the search bar or voice search to find tools.
+2. **Convert**: Enter values and select units for instant conversions.
+3. **Favorites**: Click the star icon to favorite tools.
+4. **History**: View past conversions in the History tab.
+5. **Themes**: Switch themes in the sidebar.
+6. **Install**: On mobile, add to home screen for app-like experience.
+
+## 🤝 Contributing
+
+1. Fork the repository.
+2. Create a feature branch: `git checkout -b feature-name`.
+3. Commit changes: `git commit -m 'Add feature'`.
+4. Push to branch: `git push origin feature-name`.
+5. Open a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**Soumitro Sarkar**  
+- GitHub: [@SoumitroSarkarzz](https://github.com/SoumitroSarkarzz)
+- Email: [your-email@example.com](mailto:your-email@example.com)
+
+## 🙏 Acknowledgments
+
+- Icons from Heroicons
+- Color schemes inspired by cyberpunk aesthetics
+- Built with love for developers and users alike
+
+---
+
+⭐ If you find this project useful, please give it a star on GitHub!
 ```
 
 **Netlify Deployment:**
