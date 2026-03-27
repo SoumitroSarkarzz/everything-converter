@@ -2,6 +2,8 @@
 
 A comprehensive converter tool with a pixel-art UI. Convert lengths, weights, temperatures, currencies, and more.
 
+![Everything Converter Screenshot](./screenshot.png)
+
 ## Features
 
 ### Core Conversions
