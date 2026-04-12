@@ -168,7 +168,7 @@ Edit in `index.html`:
 - `short_name` in `manifest.json`
 
 ### Change Branding
-Replace "Everything Convertor" text in:
+Replace "Everything Converter" text in:
 - `index.html` sidebar
 - `manifest.json` (name field)
 
